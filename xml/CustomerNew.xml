@@ -1,7 +1,19 @@
 <?xml version="1.0"?>
 <ostendoexport>
   <customermaster>
-    <Name>ace7</Name>
-    <Email>ace+1@acegoulet.com</Email>
+    <OSTENDO_COMPANY>bsdfg</OSTENDO_COMPANY>
+    <OSTENDO_ABN>sdaf</OSTENDO_ABN>
+    <OSTENDO_FIRST>Appleton</OSTENDO_FIRST>
+    <OSTENDO_LAST>Furthermore</OSTENDO_LAST>
+    <OSTENDO_EMAIL>ace+test@sanbornmediafactory.com</OSTENDO_EMAIL>
+    <OSTENDO_PHONE>1231231231</OSTENDO_PHONE>
+    <OSTENDO_BUSINESS>Architect/ Interior Designer/Decorator</OSTENDO_BUSINESS>
+    <OSTENDO_HEAR>Magazine</OSTENDO_HEAR>
+    <QP>Yes</QP>
+    <CATALOGUE>Yes</CATALOGUE>
+    <farts_central>Yes</farts_central>
+    <OSTENDO_PROJECT>sdi;fgh iusdfhg o;hudsfg</OSTENDO_PROJECT>
+    <DATE>16/07/2016</DATE>
+    <TIME>05:52</TIME>
   </customermaster>
 </ostendoexport>

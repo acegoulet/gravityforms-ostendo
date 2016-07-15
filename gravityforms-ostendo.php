@@ -43,22 +43,86 @@ function gf_ostendo() {
     return GFOstendo::get_instance();
 }
 
+//ostendo ID custom field for form fields
+add_action( 'gform_field_standard_settings', 'ostendo_field_id', 10, 2 );
+function ostendo_field_id( $position, $form_id ) {
+    $thisform = GFAPI::get_form( $form_id );
+    
+    //if ostendo enabled for this form
+    if(!empty($thisform['gfostendo']) && $thisform['gfostendo']['ostendo_enabled'] == true){
+        //create settings on position 25 (right after Field Label)
+        if ( $position == 20 ) {
+            ?>
+            <li class="ostendo_id field_setting">
+                <label for="field_admin_label">
+                    <?php _e( 'Ostendo ID', 'gravityforms' ); ?>
+                    <?php gform_tooltip( 'form_field_ostendo_id' ) ?>
+                </label>
+                <input type="text" id="field_ostendo_id" name="field_ostendo_id" onchange="SetFieldProperty('ostendoField', this.value);" />
+            </li>
+            <?php
+        }
+    }
+    else {
+        echo 'blah';
+    }
+}
+
+add_action( 'gform_editor_js', 'ostendo_editor_script' );
+function ostendo_editor_script(){
+    ?>
+    <script type='text/javascript'>
+        //adding setting to fields of type "text"
+        //console.log(fieldSettings);
+        fieldSettings["text"] += ", .ostendo_id";
+        fieldSettings["email"] += ", .ostendo_id";
+        fieldSettings["phone"] += ", .ostendo_id";
+        fieldSettings["radio"] += ", .ostendo_id";
+        fieldSettings["checkbox"] += ", .ostendo_id";
+        fieldSettings["check"] += ", .ostendo_id";
+        fieldSettings["textarea"] += ", .ostendo_id";
+        //binding to the load field settings event to initialize the checkbox
+        jQuery(document).bind("gform_load_field_settings", function(event, field, form){
+            jQuery("#field_ostendo_id").val(field["ostendoField"]);
+        });
+    </script>
+    <?php
+}
+
+add_filter( 'gform_tooltips', 'ostendo_field_id_tooltips' );
+function ostendo_field_id_tooltips( $tooltips ) {
+   $tooltips['form_field_ostendo_id'] = "<h6>Ostendo ID</h6>Input the Ostendo ID that corresponds to this field";
+   return $tooltips;
+}
+
+//send data to ostendo
 add_action( 'gform_after_submission', 'send_to_ostendo', 10, 2 );
 function send_to_ostendo( $entry, $form ) {
     $plugin_path = __DIR__;
-/*
-    print_r($form);
-    print_r($entry);
-*/
     if(!empty($form['gfostendo']) && $form['gfostendo']['ostendo_enabled'] == true){
         
         if(!empty($form['gfostendo']['ostendo_recipients'])){
             $entry_value_array = array();
+            
             foreach($form['fields'] as $key => $field){
-                $field_label = sanitize_text_field($field['label']);
-                $entry_value_array[$field_label] = sanitize_text_field($entry[$key + 1]);
+                $field_id = $field['id'];
+                if(!empty($field['ostendoField'])){
+                    $field_label = sanitize_text_field($field['ostendoField']);
+                    
+                    if($field['type'] !== 'checkbox'){
+                        $entry_value_array[$field_label] = sanitize_text_field($entry[$field_id]);
+                    }
+                    else {
+                        $checkbox_array = array();
+                        for ($int = floatval($field_id)+0.1; $int <= floatval($field_id)+1; $int = $int + 0.1) {
+                            if(!empty($entry[(string) $int])){
+                                array_push($checkbox_array, sanitize_text_field($entry[(string) $int]));
+                            }
+                        }
+                        $entry_value_array[$field_label] = $checkbox_array;
+                    }
+                }
             }
-            //print_r($entry_value_array);
             
             //setup xml file
             date_default_timezone_set('Australia/Sydney');
@@ -66,8 +130,17 @@ function send_to_ostendo( $entry, $form ) {
             $xml = new SimpleXMLElement('<ostendoexport></ostendoexport>');
             $customer = $xml->addChild('customermaster');
             foreach($entry_value_array as $key => $entry_value){
-                $customer->addChild($key, htmlspecialchars($entry_value));
+                if(!is_array($entry_value)){
+                    $customer->addChild($key, htmlspecialchars($entry_value));
+                }
+                else {
+                    foreach($entry_value as $entry_value_item){
+                        $customer->addChild(str_replace(' ', '_', $entry_value_item), 'Yes' );
+                    }
+                }
             }
+            $customer->addChild('DATE', date("d/m/Y"));
+            $customer->addChild('TIME', date("H:i"));
             
             //Format XML to save indented tree rather than one line
             $dom = new DOMDocument('1.0');
@@ -90,8 +163,6 @@ function send_to_ostendo( $entry, $form ) {
             'X-Mailer: PHP/' . phpversion();
             wp_mail($email_to, $email_subject, $email_message, $headers, array($plugin_path.'/xml/CustomerNew.xml')); 
         }
-        
-        
     }
 }
 
