@@ -1,19 +1,18 @@
 <?xml version="1.0"?>
 <ostendoexport>
   <customermaster>
-    <OSTENDO_COMPANY>bsdfg</OSTENDO_COMPANY>
-    <OSTENDO_ABN>sdaf</OSTENDO_ABN>
-    <OSTENDO_FIRST>Appleton</OSTENDO_FIRST>
-    <OSTENDO_LAST>Furthermore</OSTENDO_LAST>
-    <OSTENDO_EMAIL>ace+test@sanbornmediafactory.com</OSTENDO_EMAIL>
-    <OSTENDO_PHONE>1231231231</OSTENDO_PHONE>
-    <OSTENDO_BUSINESS>Architect/ Interior Designer/Decorator</OSTENDO_BUSINESS>
-    <OSTENDO_HEAR>Magazine</OSTENDO_HEAR>
-    <QP>Yes</QP>
-    <CATALOGUE>Yes</CATALOGUE>
-    <farts_central>Yes</farts_central>
-    <OSTENDO_PROJECT>sdi;fgh iusdfhg o;hudsfg</OSTENDO_PROJECT>
-    <DATE>16/07/2016</DATE>
-    <TIME>05:52</TIME>
+    <OSTENDO_COMPANY>asdf</OSTENDO_COMPANY>
+    <OSTENDO_ABN>asdf</OSTENDO_ABN>
+    <OSTENDO_FIRST>asdf</OSTENDO_FIRST>
+    <OSTENDO_LAST>asdf</OSTENDO_LAST>
+    <OSTENDO_EMAIL>asdf@sdf.com</OSTENDO_EMAIL>
+    <OSTENDO_PHONE>1234123123</OSTENDO_PHONE>
+    <OSTENDO_BUSINESS>Retail Store</OSTENDO_BUSINESS>
+    <OSTENDO_HEAR>I am a previous customer</OSTENDO_HEAR>
+    <APPOINT>Yes</APPOINT>
+    <SAMPLES>Yes</SAMPLES>
+    <OSTENDO_PROJECT>test a</OSTENDO_PROJECT>
+    <DATE>20/07/2016</DATE>
+    <TIME>03:11</TIME>
   </customermaster>
 </ostendoexport>

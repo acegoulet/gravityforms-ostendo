@@ -95,6 +95,14 @@ function ostendo_field_id_tooltips( $tooltips ) {
    return $tooltips;
 }
 
+//get form data for testing
+/*
+add_filter( 'gform_pre_render', 'show_form_data' );
+function show_form_data( $form ) {
+    print_r($form);
+}
+*/
+
 //send data to ostendo
 add_action( 'gform_after_submission', 'send_to_ostendo', 10, 2 );
 function send_to_ostendo( $entry, $form ) {
@@ -114,7 +122,7 @@ function send_to_ostendo( $entry, $form ) {
                     }
                     else {
                         $checkbox_array = array();
-                        for ($int = floatval($field_id)+0.1; $int <= floatval($field_id)+1; $int = $int + 0.1) {
+                        for ($int = floatval($field_id)+0.1; $int <= floatval($field_id)+.9; $int = $int + 0.1) {
                             if(!empty($entry[(string) $int])){
                                 array_push($checkbox_array, sanitize_text_field($entry[(string) $int]));
                             }
@@ -157,7 +165,7 @@ function send_to_ostendo( $entry, $form ) {
             
             $email_to = $form['gfostendo']['ostendo_recipients'];
             $email_subject = "Customer New";
-            $email_message = $entry_value_array;
+            $email_message = 'Ostendo Submission';
             $headers = 'From: info@armadillo-co.com<info@armadillo-co.com>'."\r\n".
             'Reply-To: test@test.com'."\r\n" .
             'X-Mailer: PHP/' . phpversion();
