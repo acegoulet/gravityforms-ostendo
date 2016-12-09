@@ -1,18 +1,19 @@
 <?xml version="1.0"?>
 <ostendoexport>
   <customermaster>
-    <OSTENDO_COMPANY>asdf</OSTENDO_COMPANY>
-    <OSTENDO_ABN>asdf</OSTENDO_ABN>
-    <OSTENDO_FIRST>asdf</OSTENDO_FIRST>
-    <OSTENDO_LAST>asdf</OSTENDO_LAST>
-    <OSTENDO_EMAIL>asdf@sdf.com</OSTENDO_EMAIL>
-    <OSTENDO_PHONE>1234123123</OSTENDO_PHONE>
+    <OSTENDO_COMPANY>blah company</OSTENDO_COMPANY>
+    <COUNTRY>Canada</COUNTRY>
+    <OSTENDO_ABN>123</OSTENDO_ABN>
+    <OSTENDO_FIRST>Appleton</OSTENDO_FIRST>
+    <OSTENDO_LAST>Furthermore</OSTENDO_LAST>
+    <OSTENDO_EMAIL>ace+test@sanbornmediafactory.com</OSTENDO_EMAIL>
+    <OSTENDO_PHONE>1231231231</OSTENDO_PHONE>
     <OSTENDO_BUSINESS>Retail Store</OSTENDO_BUSINESS>
-    <OSTENDO_HEAR>I am a previous customer</OSTENDO_HEAR>
-    <APPOINT>Yes</APPOINT>
+    <OSTENDO_HEAR>Friend</OSTENDO_HEAR>
+    <QP>Yes</QP>
     <SAMPLES>Yes</SAMPLES>
-    <OSTENDO_PROJECT>test a</OSTENDO_PROJECT>
-    <DATE>20/07/2016</DATE>
-    <TIME>03:11</TIME>
+    <OSTENDO_PROJECT>test 1</OSTENDO_PROJECT>
+    <DATE>10/12/2016</DATE>
+    <TIME>08:17</TIME>
   </customermaster>
 </ostendoexport>

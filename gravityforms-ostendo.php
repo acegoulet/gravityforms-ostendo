@@ -64,7 +64,7 @@ function ostendo_field_id( $position, $form_id ) {
         }
     }
     else {
-        echo 'blah';
+        //echo 'blah';
     }
 }
 
@@ -81,6 +81,7 @@ function ostendo_editor_script(){
         fieldSettings["checkbox"] += ", .ostendo_id";
         fieldSettings["check"] += ", .ostendo_id";
         fieldSettings["textarea"] += ", .ostendo_id";
+        fieldSettings["select"] += ", .ostendo_id";
         //binding to the load field settings event to initialize the checkbox
         jQuery(document).bind("gform_load_field_settings", function(event, field, form){
             jQuery("#field_ostendo_id").val(field["ostendoField"]);
